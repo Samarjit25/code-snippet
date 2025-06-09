@@ -41,8 +41,8 @@ const HowWorks = () => {
       </div>
       <div className="flex-1 flex items-center justify-center max-lg:hidden">
         <img
-          src="/public/code-svgrepo-com.svg"
-          alt="How it works illustration"
+          src="/code-svgrepo-com.svg"
+          alt="Code Snippet Image"
           className="h-[90%] w-auto rounded-3xl object-cover"
         />
       </div>
