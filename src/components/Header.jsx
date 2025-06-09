@@ -12,7 +12,7 @@ const Header = () => {
       </NavLink>
       {/* Right: Get Started button */}
       <NavLink
-        to="/get-started"
+        to="/dashboard"
         className="bg-red-700 text-white px-5 py-2 rounded-md font-semibold hover:bg-gray-800 transition"
       >
         Get Started
