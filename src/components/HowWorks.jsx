@@ -15,7 +15,7 @@ const steps = [
 
 const HowWorks = () => {
   return (
-    <section className="flex flex-col lg:flex-row gap-10 w-full max-w-6xl mx-auto p-8 border-t-4 border-red-600 rounded-3xl shadow-lg mb-24 mt-16 bg-white">
+    <section className="flex flex-col lg:flex-row gap-10 w-full max-w-6xl mx-auto p-8 border-t-4 border-red-600 rounded-3xl shadow-lg mb-24 bg-white ">
       <div className="flex-1">
         <span className="text-base font-semibold uppercase tracking-wider text-red-600 border-b-2 border-purple-200 pb-1">
           How It Works
@@ -41,9 +41,9 @@ const HowWorks = () => {
       </div>
       <div className="flex-1 flex items-center justify-center max-lg:hidden">
         <img
-          src="/code-svgrepo-com.svg"
+          src="/application-coding-web-code-write-svgrepo-com.svg"
           alt="Code Snippet Image"
-          className="h-[90%] w-auto rounded-3xl object-cover"
+          className="h-full w-auto rounded-3xl object-cover "
         />
       </div>
     </section>
