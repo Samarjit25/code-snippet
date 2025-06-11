@@ -1,50 +1,38 @@
 const steps = [
   {
     number: 1,
-    title: "Paste or Upload Your Code",
+    title: "Paste or Write Your Code",
     description:
-      "Easily paste your code snippet or upload a file to get started. No signup required.",
+      "Enter your code in the editor. Adjust the font size, padding, and pick your favorite theme for a perfect look.",
   },
   {
     number: 2,
-    title: "Share or Save Instantly",
+    title: "Preview & Download",
     description:
-      "Save your snippet to your collection or share it with others using a unique link.",
+      "See a live preview of your code snippet as an image. Download it instantly and share anywhere you want.",
   },
 ];
 
 const HowWorks = () => {
   return (
-    <section className="flex flex-col lg:flex-row gap-10 w-full max-w-6xl mx-auto p-8 border-t-4 border-red-600 rounded-3xl shadow-lg mb-24 bg-white ">
-      <div className="flex-1">
-        <span className="text-base font-semibold uppercase tracking-wider text-red-600 border-b-2 border-purple-200 pb-1">
-          How It Works
-        </span>
-        <h2 className="text-4xl md:text-5xl font-extrabold mb-8 mt-8 text-gray-900">
-          Just 2 Simple Steps
-        </h2>
-        <div className="space-y-10 mt-12 mb-8">
-          {steps.map((step, index) => (
-            <div key={index} className="flex gap-6 items-start">
-              <div className="rounded-full border-4 border-purple-200 bg-purple-50 w-14 h-14 flex justify-center items-center text-red-700 font-bold text-2xl shadow">
-                {step.number}
-              </div>
-              <div>
-                <h3 className="font-semibold text-xl text-gray-800">
-                  {step.title}
-                </h3>
-                <p className="text-gray-500 mt-2">{step.description}</p>
-              </div>
+    <section className="w-full max-w-6xl mx-auto p-6 md:p-10 my-25 lg:h-[50vh] bg-white rounded-2xl shadow-md border-t-4 border-red-600 mt-0">
+      <h2 className="text-3xl md:text-4xl font-extrabold mb-8 text-gray-900 text-center">
+        How It Works
+      </h2>
+      <div className="space-y-8">
+        {steps.map((step, index) => (
+          <div key={index} className="flex items-start gap-4">
+            <div className="rounded-full border-2 border-purple-200 bg-purple-50 w-10 h-10 flex justify-center items-center text-red-700 font-bold text-lg shadow">
+              {step.number}
             </div>
-          ))}
-        </div>
-      </div>
-      <div className="flex-1 flex items-center justify-center max-lg:hidden">
-        <img
-          src="/application-coding-web-code-write-svgrepo-com.svg"
-          alt="Code Snippet Image"
-          className="h-full w-auto rounded-3xl object-cover "
-        />
+            <div>
+              <h3 className="font-semibold text-lg text-gray-800">
+                {step.title}
+              </h3>
+              <p className="text-gray-500 mt-1">{step.description}</p>
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   );

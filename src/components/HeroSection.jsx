@@ -15,14 +15,14 @@ const HeroSection = () => {
       </div>
       {/* Main heading */}
       <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 max-w-3xl mx-auto leading-tight">
-        Instantly Share & Discover{" "}
-        <span className="text-red-700">Code Snippets</span>
+        Turn Code into Art
+        <span className="text-red-700"></span>
       </h1>
       {/* Subtext */}
       <div className="max-w-2xl mx-auto mb-10 text-lg text-gray-600">
         <p>
-          Effortlessly save, organize, and share your favorite code snippets.
-          Boost productivity and collaborate with developers worldwide.
+          Paste code, pick a theme, adjust style, preview & download as a
+          beautiful image.
         </p>
       </div>
       {/* CTA buttons */}
