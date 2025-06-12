@@ -85,9 +85,9 @@ const Dashboard = () => {
 
   return (
     <div className="min-h-screen bg-white from-gray-100 to-gray-300 p-3 w-full">
-      <div className="max-w-7xl mx-auto ">
+      <div className="max-w-7xl mx-auto py-5">
         <div className="overflow-hidden">
-          <div className="grid lg:grid-cols-2 gap-8 p-8">
+          <div className="grid lg:grid-cols-2 gap-8 p-5">
             {/* Controls */}
             <div className="space-y-6">
               <div className="bg-white rounded-2xl p-6 shadow-2xs border">
@@ -103,10 +103,10 @@ const Dashboard = () => {
                     <select
                       value={theme}
                       onChange={(e) => setTheme(e.target.value)}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-1 focus:ring-blue-500"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-1  focus:ring-red-700"
                     >
                       {Object.keys(themes).map((themeName) => (
-                        <option key={themeName} value={themeName}>
+                        <option className="" key={themeName} value={themeName}>
                           {themeName
                             .replace("-", " ")
                             .replace(/\b\w/g, (l) => l.toUpperCase())}
@@ -125,7 +125,7 @@ const Dashboard = () => {
                         max="24"
                         value={fontSize}
                         onChange={(e) => setFontSize(Number(e.target.value))}
-                        className="w-full"
+                        className="w-full accent-red-700"
                       />
                       <span className="text-xs text-gray-500">
                         {fontSize}px
@@ -141,7 +141,7 @@ const Dashboard = () => {
                         max="50"
                         value={padding}
                         onChange={(e) => setPadding(Number(e.target.value))}
-                        className="w-full"
+                        className="w-full accent-red-700"
                       />
                       <span className="text-xs text-gray-500">{padding}px</span>
                     </div>
