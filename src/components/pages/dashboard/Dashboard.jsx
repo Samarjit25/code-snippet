@@ -5,10 +5,10 @@ import {Button} from "@/components/ui/button";
 
 const Dashboard = () => {
   const [code, setCode] = useState("");
-
   const [theme, setTheme] = useState("vscode-dark");
   const [fontSize, setFontSize] = useState(14);
   const [padding, setPadding] = useState(20);
+  const [showLineNumbers, setShowLineNumbers] = useState(false); // Line numbers toggle
   const canvasRef = useRef(null);
 
   const generateImage = () => {
@@ -22,7 +22,11 @@ const Dashboard = () => {
     const charWidth = fontSize * 0.6;
 
     const windowBarHeight = 40;
-    const codeWidth = Math.max(400, maxLineLength * charWidth + padding * 2);
+    const lineNumberWidth = showLineNumbers ? 36 : 0;
+    const codeWidth = Math.max(
+      400,
+      maxLineLength * charWidth + padding * 2 + lineNumberWidth
+    );
     const codeHeight =
       lines.length * lineHeight + padding * 2 + windowBarHeight;
 
@@ -48,11 +52,20 @@ const Dashboard = () => {
     ctx.textAlign = "left";
     ctx.fillStyle = currentTheme.text;
 
-    // Draw code
+    // Draw code with optional line numbers
     const startY = windowBarHeight + padding;
     lines.forEach((line, index) => {
       const y = startY + index * lineHeight;
-      ctx.fillText(line, padding, y);
+      if (showLineNumbers) {
+        ctx.fillStyle = currentTheme.lineNumber || "#888";
+        ctx.textAlign = "right";
+        ctx.fillText(String(index + 1), padding + lineNumberWidth - 8, y);
+        ctx.fillStyle = currentTheme.text;
+        ctx.textAlign = "left";
+        ctx.fillText(line, padding + lineNumberWidth, y);
+      } else {
+        ctx.fillText(line, padding, y);
+      }
     });
   };
 
@@ -68,13 +81,13 @@ const Dashboard = () => {
   useEffect(() => {
     generateImage();
     // eslint-disable-next-line
-  }, [code, theme, fontSize, padding]);
+  }, [code, theme, fontSize, padding, showLineNumbers]);
 
   return (
     <div className="min-h-screen bg-white from-gray-100 to-gray-300 p-3 w-full">
-      <div className="max-w-7xl mx-auto ">
+      <div className="max-w-7xl mx-auto py-5">
         <div className="overflow-hidden">
-          <div className="grid lg:grid-cols-2 gap-8 p-8">
+          <div className="grid lg:grid-cols-2 gap-8 p-5">
             {/* Controls */}
             <div className="space-y-6">
               <div className="bg-white rounded-2xl p-6 shadow-2xs border">
@@ -90,10 +103,10 @@ const Dashboard = () => {
                     <select
                       value={theme}
                       onChange={(e) => setTheme(e.target.value)}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-1  focus:ring-red-700"
                     >
                       {Object.keys(themes).map((themeName) => (
-                        <option key={themeName} value={themeName}>
+                        <option className="" key={themeName} value={themeName}>
                           {themeName
                             .replace("-", " ")
                             .replace(/\b\w/g, (l) => l.toUpperCase())}
@@ -112,7 +125,7 @@ const Dashboard = () => {
                         max="24"
                         value={fontSize}
                         onChange={(e) => setFontSize(Number(e.target.value))}
-                        className="w-full"
+                        className="w-full accent-red-700"
                       />
                       <span className="text-xs text-gray-500">
                         {fontSize}px
@@ -128,10 +141,21 @@ const Dashboard = () => {
                         max="50"
                         value={padding}
                         onChange={(e) => setPadding(Number(e.target.value))}
-                        className="w-full"
+                        className="w-full accent-red-700"
                       />
                       <span className="text-xs text-gray-500">{padding}px</span>
                     </div>
+                  </div>
+                  <div>
+                    <label className="flex items-center gap-2 text-sm font-medium text-gray-700">
+                      <input
+                        type="checkbox"
+                        checked={showLineNumbers}
+                        onChange={(e) => setShowLineNumbers(e.target.checked)}
+                        className="accent-red-700"
+                      />
+                      Show Line Numbers
+                    </label>
                   </div>
                 </div>
               </div>
