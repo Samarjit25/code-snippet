@@ -1,14 +1,16 @@
+// ...existing imports...
 import React, {useState, useRef, useEffect} from "react";
-import {Download, Settings, Palette} from "lucide-react";
+import {Settings, Palette} from "lucide-react";
 import themes from "@/data/Theme";
 import {Button} from "@/components/ui/button";
+import CodeInput from "./components/CodeInput";
 
 const Dashboard = () => {
   const [code, setCode] = useState("");
   const [theme, setTheme] = useState("vscode-dark");
   const [fontSize, setFontSize] = useState(14);
   const [padding, setPadding] = useState(20);
-  const [showLineNumbers, setShowLineNumbers] = useState(false); // Line numbers toggle
+  const [showLineNumbers, setShowLineNumbers] = useState(false);
   const canvasRef = useRef(null);
 
   const generateImage = () => {
@@ -85,117 +87,103 @@ const Dashboard = () => {
 
   return (
     <div className="min-h-screen bg-white from-gray-100 to-gray-300 p-3 w-full">
-      <div className="max-w-7xl mx-auto py-5">
-        <div className="overflow-hidden">
-          <div className="grid lg:grid-cols-2 gap-8 p-5">
-            {/* Controls */}
-            <div className="space-y-6">
-              <div className="bg-white rounded-2xl p-6 shadow-2xs border">
-                <h2 className="text-xl font-semibold text-gray-800 mb-4 flex items-center">
-                  <Settings className="w-5 h-5 mr-2 text-red-700" />
-                  Configuration
-                </h2>
-                <div className="space-y-4">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Theme
-                    </label>
-                    <select
-                      value={theme}
-                      onChange={(e) => setTheme(e.target.value)}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-1  focus:ring-red-700"
-                    >
-                      {Object.keys(themes).map((themeName) => (
-                        <option className="" key={themeName} value={themeName}>
-                          {themeName
-                            .replace("-", " ")
-                            .replace(/\b\w/g, (l) => l.toUpperCase())}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Font Size
-                      </label>
-                      <input
-                        type="range"
-                        min="10"
-                        max="24"
-                        value={fontSize}
-                        onChange={(e) => setFontSize(Number(e.target.value))}
-                        className="w-full accent-red-700"
-                      />
-                      <span className="text-xs text-gray-500">
-                        {fontSize}px
-                      </span>
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Padding
-                      </label>
-                      <input
-                        type="range"
-                        min="10"
-                        max="50"
-                        value={padding}
-                        onChange={(e) => setPadding(Number(e.target.value))}
-                        className="w-full accent-red-700"
-                      />
-                      <span className="text-xs text-gray-500">{padding}px</span>
-                    </div>
-                  </div>
-                  <div>
-                    <label className="flex items-center gap-2 text-sm font-medium text-gray-700">
-                      <input
-                        type="checkbox"
-                        checked={showLineNumbers}
-                        onChange={(e) => setShowLineNumbers(e.target.checked)}
-                        className="accent-red-700"
-                      />
-                      Show Line Numbers
-                    </label>
-                  </div>
-                </div>
+      <div className="max-w-5xl mx-auto py-5 flex flex-col gap-6">
+        {/* Top: Configuration and Code Input */}
+        <div className="flex flex-col md:flex-row gap-6">
+          {/* Configuration */}
+          <div className="bg-white rounded-2xl p-6 shadow-2xs border flex-1">
+            <h2 className="text-xl font-semibold text-gray-800 mb-4 flex items-center">
+              <Settings className="w-5 h-5 mr-2 text-red-700" />
+              Configuration
+            </h2>
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Theme
+                </label>
+                <select
+                  value={theme}
+                  onChange={(e) => setTheme(e.target.value)}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-1  focus:ring-red-700"
+                >
+                  {Object.keys(themes).map((themeName) => (
+                    <option className="" key={themeName} value={themeName}>
+                      {themeName
+                        .replace("-", " ")
+                        .replace(/\b\w/g, (l) => l.toUpperCase())}
+                    </option>
+                  ))}
+                </select>
               </div>
-              <div className="bg-white rounded-2xl p-6 shadow-2xs border">
-                <h2 className="text-xl font-semibold text-gray-800 mb-4">
-                  Code Input
-                </h2>
-                <textarea
-                  value={code}
-                  onChange={(e) => setCode(e.target.value)}
-                  className="w-full h-64 px-4 py-3 border border-gray-300 rounded-lg font-mono text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
-                  placeholder="Enter your code here..."
-                />
-              </div>
-            </div>
-            {/* Preview & Export */}
-            <div className="space-y-6 flex flex-col justify-between">
-              <div className="bg-white rounded-2xl p-6 shadow-2xs border flex-1 flex flex-col">
-                <div className="flex items-center justify-between mb-4">
-                  <h2 className="text-xl font-semibold text-gray-800 flex items-center">
-                    <Palette className="w-5 h-5 mr-2 text-red-700" />
-                    Preview
-                  </h2>
-                  <div className="flex space-x-2">
-                    <Button
-                      onClick={downloadImage}
-                      className="flex items-center px-5 py-4 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
-                    >
-                      Download
-                    </Button>
-                  </div>
-                </div>
-                <div className="bg-gray-50 rounded-lg p-4 overflow-auto flex-1 flex items-center justify-center">
-                  <canvas
-                    ref={canvasRef}
-                    className="max-w-full h-auto border border-gray-200 rounded-lg shadow-sm"
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Font Size
+                  </label>
+                  <input
+                    type="range"
+                    min="10"
+                    max="24"
+                    value={fontSize}
+                    onChange={(e) => setFontSize(Number(e.target.value))}
+                    className="w-full accent-red-700"
                   />
+                  <span className="text-xs text-gray-500">{fontSize}px</span>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Padding
+                  </label>
+                  <input
+                    type="range"
+                    min="10"
+                    max="50"
+                    value={padding}
+                    onChange={(e) => setPadding(Number(e.target.value))}
+                    className="w-full accent-red-700"
+                  />
+                  <span className="text-xs text-gray-500">{padding}px</span>
                 </div>
               </div>
+              <div>
+                <label className="flex items-center gap-2 text-sm font-medium text-gray-700">
+                  <input
+                    type="checkbox"
+                    checked={showLineNumbers}
+                    onChange={(e) => setShowLineNumbers(e.target.checked)}
+                    className="accent-red-700"
+                  />
+                  Show Line Numbers
+                </label>
+              </div>
             </div>
+          </div>
+          {/* Code Input */}
+          <div className="bg-white rounded-2xl p-6 shadow-2xs border flex-1">
+            <CodeInput code={code} setCode={setCode} />
+          </div>
+        </div>
+        {/* Bottom: Preview & Export */}
+        <div className="bg-white rounded-2xl p-6 shadow-2xs border flex flex-col mt-2">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-xl font-semibold text-gray-800 flex items-center">
+              <Palette className="w-5 h-5 mr-2 text-red-700" />
+              Preview
+            </h2>
+            <div className="flex space-x-2">
+              <Button
+                onClick={downloadImage}
+                className="flex items-center px-5 py-4 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
+              >
+                Download
+              </Button>
+            </div>
+          </div>
+          <div className="bg-gray-50 rounded-lg p-4 overflow-auto flex-1 flex items-center justify-center">
+            <canvas
+              ref={canvasRef}
+              className="max-w-full h-auto border border-gray-200 rounded-lg shadow-sm"
+            />
           </div>
         </div>
       </div>
