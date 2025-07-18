@@ -7,13 +7,14 @@ const Preview = ({downloadImage, canvasRef}) => {
     <div className="bg-white rounded-2xl p-6 shadow-2xs border flex-1 flex flex-col">
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-xl font-semibold text-gray-800 flex items-center">
-          <Palette className="w-5 h-5 mr-2 text-red-700" />
+          <Palette className="w-5 h-5 mr-2 text-gray-700" />
           Preview
         </h2>
         <div className="flex space-x-2">
           <Button
             onClick={downloadImage}
-            className="flex items-center px-5 py-4 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
+              className="flex items-center px-5 py-4 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+
           >
             Download
           </Button>

@@ -93,7 +93,7 @@ const Dashboard = () => {
           {/* Configuration */}
           <div className="bg-white rounded-2xl p-6 shadow-2xs border flex-1">
             <h2 className="text-xl font-semibold text-gray-800 mb-4 flex items-center">
-              <Settings className="w-5 h-5 mr-2 text-red-700" />
+              <Settings className="w-5 h-5 mr-2 text-blue-700" />
               Configuration
             </h2>
             <div className="space-y-4">
@@ -104,7 +104,7 @@ const Dashboard = () => {
                 <select
                   value={theme}
                   onChange={(e) => setTheme(e.target.value)}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-1  focus:ring-red-700"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-1  focus:ring-blue-700"
                 >
                   {Object.keys(themes).map((themeName) => (
                     <option className="" key={themeName} value={themeName}>
@@ -126,7 +126,7 @@ const Dashboard = () => {
                     max="24"
                     value={fontSize}
                     onChange={(e) => setFontSize(Number(e.target.value))}
-                    className="w-full accent-red-700"
+                    className="w-full accent-blue-700"
                   />
                   <span className="text-xs text-gray-500">{fontSize}px</span>
                 </div>
@@ -140,7 +140,7 @@ const Dashboard = () => {
                     max="50"
                     value={padding}
                     onChange={(e) => setPadding(Number(e.target.value))}
-                    className="w-full accent-red-700"
+                    className="w-full accent-blue-700"
                   />
                   <span className="text-xs text-gray-500">{padding}px</span>
                 </div>
@@ -151,7 +151,7 @@ const Dashboard = () => {
                     type="checkbox"
                     checked={showLineNumbers}
                     onChange={(e) => setShowLineNumbers(e.target.checked)}
-                    className="accent-red-700"
+                    className="accent-blue-700"
                   />
                   Show Line Numbers
                 </label>
@@ -167,13 +167,13 @@ const Dashboard = () => {
         <div className="bg-white rounded-2xl p-6 shadow-2xs border flex flex-col mt-2">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-xl font-semibold text-gray-800 flex items-center">
-              <Palette className="w-5 h-5 mr-2 text-red-700" />
+              <Palette className="w-5 h-5 mr-2 text-blue-700" />
               Preview
             </h2>
             <div className="flex space-x-2">
               <Button
                 onClick={downloadImage}
-                className="flex items-center px-5 py-4 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
+                className="flex items-center px-5 py-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
               >
                 Download
               </Button>

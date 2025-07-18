@@ -8,7 +8,7 @@ const HeroSection = () => {
       {/* Main heading */}
       <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 max-w-3xl mx-auto leading-tight">
         Turn Code into Art. <br />
-        <span className="text-red-700">Code Snippet Generator</span>
+        <span className="text-blue-700">Code Snippet Generator</span>
       </h1>
       {/* Subtext */}
       <div className="max-w-2xl mx-auto mb-10 text-lg text-gray-600">
@@ -20,8 +20,8 @@ const HeroSection = () => {
       {/* CTA buttons */}
       <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
         <NavLink to="/dashboard">
-          <Button className="inline-flex text-lg items-center gap-2 rounded-md border border-red-700 bg-red-700 px-8 py-5 text-white font-semibold shadow hover:bg-red-800 hover:border-purple-800 transition">
-            Start Free
+          <Button className="inline-flex text-lg items-center gap-2 rounded-md border border-blue-700 bg-blue-700 px-8 py-5 text-white font-semibold shadow hover:bg-blue-800 hover:border-purple-800 transition">
+            Get Started
           </Button>
         </NavLink>
       </div>
